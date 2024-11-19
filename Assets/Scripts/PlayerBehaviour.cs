@@ -20,9 +20,14 @@ public class PlayerBehaviour : MonoBehaviour
     public float maxZlocation;
     public float rotationSpeed;
     public float playerSpeed;
+    public GameManager gameManager;
     private void Awake()
     {
         Cursor.lockState = CursorLockMode.Confined;
+    }
+    void Start()
+    {
+        gameManager = FindObjectOfType<GameManager>();
     }
     // Update is called once per frame
     void Update()
@@ -70,5 +75,23 @@ public class PlayerBehaviour : MonoBehaviour
         GameObject bulletSpawn = Instantiate(bullet,firePoint.position ,Quaternion.identity);
         bulletSpawn.GetComponent<BulletBehaviour>().setDirection(firePoint.forward);
         Destroy(bulletSpawn,2.5f);
+    }
+    void OnCollisionEnter(Collision other)
+    {
+        if(other.gameObject.tag == "Enemy")
+        {
+            Time.timeScale = 0;
+            GetComponent<PlayerBehaviour>().enabled = false;
+            gameManager.GameOver();
+        }
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Win")
+        {
+            Time.timeScale = 0;
+            GetComponent<PlayerBehaviour>().enabled = false;
+            gameManager.WinUI();
+        }
     }
 }

@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Assets/Scenes/Level2.unity
     guid: ecf5fdd5e3a2d2b4dbc38391679e6d77
+  - enabled: 1
+    path: Assets/Scenes/RaionFixing.unity
+    guid: 5b9775e8f3cdd7747a70d0c6bdf00d1f
+  - enabled: 1
+    path: Assets/Scenes/homeScreen.unity
+    guid: 4e849fe5121005e4cb73da202898f119
   m_configObjects: {}
