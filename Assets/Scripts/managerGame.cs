@@ -8,10 +8,6 @@ public class managerGame : MonoBehaviour
     public float intervalTime = 8f;
     public float currentInterval = 0f;
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()

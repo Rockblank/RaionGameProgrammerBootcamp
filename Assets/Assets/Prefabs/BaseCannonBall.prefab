@@ -10,11 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 533576379358369824}
   - component: {fileID: 3057176301240881670}
-  - component: {fileID: 5434708547393090843}
   - component: {fileID: 1837148387644743278}
+  - component: {fileID: -7282210252973962221}
+  - component: {fileID: 1675403334611575821}
   m_Layer: 10
   m_Name: BaseCannonBall
-  m_TagString: Untagged
+  m_TagString: Boolet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -54,22 +55,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!54 &5434708547393090843
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 536813900378292188}
-  serializedVersion: 2
-  m_Mass: 5
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!135 &1837148387644743278
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -83,6 +68,36 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.11
   m_Center: {x: 0, y: -0.02, z: 0}
+--- !u!114 &-7282210252973962221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536813900378292188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5510045af6cb16d4fb282875f6bf3e1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletspeed: 40
+  bulletAnimator: {fileID: 3057176301240881670}
+--- !u!54 &1675403334611575821
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536813900378292188}
+  serializedVersion: 2
+  m_Mass: 0.003
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &7303946394940784818
 GameObject:
   m_ObjectHideFlags: 0

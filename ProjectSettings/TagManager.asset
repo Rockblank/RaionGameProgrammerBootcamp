@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Object
   - Boolet
+  - boundaries
   layers:
   - Default
   - TransparentFX

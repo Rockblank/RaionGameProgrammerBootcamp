@@ -1,19 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class BulletBehaviour : MonoBehaviour
 {
     [SerializeField] private float bulletspeed;
-    // Start is called before the first frame update
-    void Start()
+    public Animator bulletAnimator;
+    private Vector3 direction;
+    public void setDirection (Vector3 dir)
     {
-        
+        direction = dir;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        transform.position += Vector3.forward*bulletspeed * Time.deltaTime;
+        transform.position += direction*bulletspeed * Time.deltaTime;
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        bulletAnimator.SetTrigger("Exploded");
+    }
+    public void OnFinishedExplosionAnimation()
+    {
+        Destroy(gameObject);
     }
 }
