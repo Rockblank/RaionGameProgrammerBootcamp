@@ -54,5 +54,6 @@
         "Temp/":true
     },
     "dotnet.preferCSharpExtension": true,
-    "FSharp.suggestGitignore": false
+    "FSharp.suggestGitignore": false,
+    "dotnet.defaultSolution": "RaionGameProgrammerBootcamp.sln"
 }
