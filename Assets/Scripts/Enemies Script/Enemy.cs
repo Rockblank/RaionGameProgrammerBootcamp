@@ -23,20 +23,24 @@ public class Enemy : MonoBehaviour
         transform.position -= direction * enemySpeed*Time.deltaTime;
     }
 
-    void OnCollisionEnter(Collision other)
+    protected virtual void OnCollisionEnter(Collision other)
     {
         if(other.gameObject.tag == "Boolet")
         {
             gameManager.UpdateScore(1);
             Destroy(this.gameObject);
-        }
-        
+        }       
     }
-    void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "boundaries")
         {
             gameManager.UpdateMiss(1);
+            Destroy(this.gameObject);
+        }
+        if (other.gameObject.tag == "Swiper")
+        {
+            gameManager.UpdateScore(1);
             Destroy(this.gameObject);
         }
     }

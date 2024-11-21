@@ -9,6 +9,7 @@ TagManager:
   - boundaries
   - Enemy
   - Win
+  - Swiper
   layers:
   - Default
   - TransparentFX

@@ -10,6 +10,7 @@ public class PlayerBehaviour : MonoBehaviour
     public Transform firePoint;
 
     public GameObject bullet;
+    public GameObject SuperBullet;
     public float minRotationBase;
     public float maxRotationBase;
     public float minRotationBarrel;
@@ -21,6 +22,7 @@ public class PlayerBehaviour : MonoBehaviour
     public float rotationSpeed;
     public float playerSpeed;
     public GameManager gameManager;
+    Boolean invincible = false;
     private void Awake()
     {
         Cursor.lockState = CursorLockMode.Confined;
@@ -38,6 +40,19 @@ public class PlayerBehaviour : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             fireCannon();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
+        {
+            SuperSwipes();
+        }
+        if (Input.GetKey(KeyCode.Alpha1) || Input.GetKey(KeyCode.Keypad1))
+        {
+            invincible = true;
+            Debug.Log("YOU ARE INVINCIBLE!");
+        }
+        if (Input.GetKeyUp(KeyCode.Alpha1) || Input.GetKeyUp(KeyCode.Keypad1) )
+        {
+            invincible = false;
         }
     }
     void rotationCannon()
@@ -74,15 +89,24 @@ public class PlayerBehaviour : MonoBehaviour
     {
         GameObject bulletSpawn = Instantiate(bullet,firePoint.position ,Quaternion.identity);
         bulletSpawn.GetComponent<BulletBehaviour>().setDirection(firePoint.forward);
-        Destroy(bulletSpawn,2.5f);
+        Destroy(bulletSpawn,1.5f);
+    }
+    void SuperSwipes()
+    {
+        GameObject Swipe = Instantiate(SuperBullet,firePoint.position ,Quaternion.identity);
+        Destroy(Swipe,4.5f);
     }
     void OnCollisionEnter(Collision other)
     {
-        if(other.gameObject.tag == "Enemy")
+        if(other.gameObject.tag == "Enemy" && invincible == false)
         {
             Time.timeScale = 0;
             GetComponent<PlayerBehaviour>().enabled = false;
             gameManager.GameOver();
+        } else if (other.gameObject.tag == "Enemy" && invincible == true)
+        {
+            Destroy(other.gameObject);
+            gameManager.UpdateScore(1);
         }
     }
     void OnTriggerEnter(Collider other)

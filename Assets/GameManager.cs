@@ -4,9 +4,10 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using JetBrains.Annotations;
 public class GameManager : MonoBehaviour
 {
-    public GameObject enemy;
+    public List<GameObject> enemies;
     public float min;
     public float max;
     public float intervalTime = 8f;
@@ -20,10 +21,16 @@ public class GameManager : MonoBehaviour
     float highScore = 0;
     float missing = 0;
 
+    public GameObject Kannon;
     public GameObject gameOverUI;
     public GameObject scoreAndMiss;
     public GameObject scoringUI;
     public GameObject winUI;
+
+    void Start()
+    {
+        Time.timeScale = 1;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -34,12 +41,30 @@ public class GameManager : MonoBehaviour
 
             float randomRange = Random.Range(min,max);
             Vector3 newPosition = new Vector3(randomRange, transform.position.y, transform.position.z);
-            
-            GameObject spawnEnemy = Instantiate(enemy,newPosition,Quaternion.Euler(90,0,0));
+            float randomValue = Random.value;
+            GameObject RandomEnemy;
+            if (randomValue <= 0.6f)
+            {
+                RandomEnemy = enemies[0];
+            } else if (randomValue <= 0.8f)
+            {
+                RandomEnemy = enemies[2];
+            } else {
+                RandomEnemy = enemies[1];
+                    }
+
+            GameObject spawnEnemy = Instantiate(RandomEnemy,newPosition,Quaternion.Euler(90,0,0));
         }
         if (score > highScore)
         {
             highScore = score;
+        }
+
+        if(score < 0)
+        {
+            Time.timeScale = 0;
+            Kannon.GetComponent<PlayerBehaviour>().enabled = false;
+            GameOver();
         }
     }
 
